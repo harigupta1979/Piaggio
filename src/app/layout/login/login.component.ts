@@ -7,7 +7,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../Services/auth.service';
 import { Router } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+
 import { CryptoService } from '../../Services/crypto.service';
 
 @Component({
@@ -19,7 +19,6 @@ import { CryptoService } from '../../Services/crypto.service';
     MatButtonModule,
     MatDividerModule,
     MatIconModule,
-    HttpClientModule,
   ],
 })
 export class LoginComponent implements OnInit {
@@ -41,7 +40,9 @@ export class LoginComponent implements OnInit {
       termsAccepted: [false, Validators.requiredTrue],
     });
   }
-
+  get f() {
+    return this.loginForm.controls;
+  }
   async login() {
     this.isSubmitting = true;
     if (this.loginForm.invalid) {
@@ -51,9 +52,9 @@ export class LoginComponent implements OnInit {
       username: this.loginForm.controls['username'].value,
       password: this.crypto.encrypt(this.loginForm.controls['password'].value),
     };
-    let dt: any = [];
-    dt = await this.auth.CheckUserLogin(loginForm);
-    console.log(dt, 'dt');
+
+    let dt:any = await this.auth.CheckUserLogin(loginForm);
+
     if (dt != null && dt['FinalMode'] == 'DataFound' && dt['Message'] != '') {
       if (!dt['Data'][0].IS_PWD_CHANGE && dt['Data'][0].AgreementCount <= 0) {
         this.loginForm.reset();
@@ -63,10 +64,89 @@ export class LoginComponent implements OnInit {
       }
       return;
     }
-    let data = await this.auth.GetLogin(loginForm);
+    debugger;
+    localStorage.setItem('Dynemicmenu', '');
+    let data:any = await this.auth.GetLogin(loginForm);
+    if (data != null && data["FinalMode"] == "DataFound" && data["AdditionalParameter"] != "") {
+      var logindata = data["Data"][0];
+      localStorage.setItem('UserId', logindata["USER_ID"]);
+      localStorage.setItem('UserName', logindata["USER_NAME"]);
+      localStorage.setItem('Name', JSON.stringify(logindata["USER_FIRST_NAME"] + ' ' + logindata["USER_LAST_NAME"]));
+      localStorage.setItem('IsAdmin', logindata["IS_ADMIN"]);
+      localStorage.setItem('UserType', logindata["USER_TYPE"]);
+      localStorage.setItem('DealerId', logindata["DEALER_ID"]);
+      localStorage.setItem('JwtToken', data["AdditionalParameter"]);
+      localStorage.setItem("sidenavCollapsed", "true");
+      var obj = {
+        ActivityId: 0,
+        UserId: localStorage.getItem('UserId'),
+        UpdatedBy: localStorage.getItem('UserId'),
+        LoginBrowser: this.detectBrowserName(),
+        LoginBrowserVersion: this.detectBrowserVersion(),
+        Action: "insert"
+      }
+      let result:any = await this.auth.GetUserActivityLog(obj);
+      var ActivityData=null;
+      if (result != null && result["FinalMode"] == "DataFound") {
+        ActivityData = result["Data"][0];
+        localStorage.setItem('LOGIN_DATETIME', ActivityData == null ? '' : ActivityData["LOGIN_DATETIME"]);
+      }
+      else {
+        localStorage.setItem('LOGIN_DATETIME', new Date().toString());
+      }
+      //await this.menu.resetUserProfile();
+      var Lastloggedon =ActivityData == null ? new Date().toLocaleString() : new Date(ActivityData["LOGIN_DATETIME"]).toLocaleString();
+      const CstuserProfile = {
+        name:localStorage.getItem('Name')?.replace(/"/g, '') ?? '',
+        email: null,
+        id: logindata["USER_ID"],
+        lastlogindatetime: 'Last logged on ' +Lastloggedon,
+        avatar: './assets/images/avatar.jpg'
+      }
+      // this.userprofile.push(CstuserProfile);
+      // await this.menu.setUserProfile(this.userprofile);
+      // await this.Getdynemicmenu();
+      // this.router.navigate(['/dashboard']);
+      // this.toastr.success("Successfully Login", 'Login');
+    }
+  }
+  detectBrowserVersion() {
+    var userAgent = navigator.userAgent, tem,
+      matchTest = userAgent.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+
+    if (/trident/i.test(matchTest[1])) {
+      tem = /\brv[ :]+(\d+)/g.exec(userAgent) || [];
+      return 'IE ' + (tem[1] || '');
+    }
+
+    if (matchTest[1] === 'Chrome') {
+      tem = userAgent.match(/\b(OPR|Edge)\/(\d+)/);
+      if (tem != null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+    }
+
+    matchTest = matchTest[2] ? [matchTest[1], matchTest[2]] : [navigator.appName, navigator.appVersion, '-?'];
+
+    if ((tem = userAgent.match(/version\/(\d+)/i)) != null) matchTest.splice(1, 1, tem[1]);
+    return matchTest.join(' ');
+  }
+  detectBrowserName() {
+    const agent = window.navigator.userAgent.toLowerCase()
+    switch (true) {
+      case agent.indexOf('edge') > -1:
+        return 'edge';
+      case agent.indexOf('opr') > -1 && !!(<any>window).opr:
+        return 'opera';
+      case agent.indexOf('chrome') > -1 && !!(<any>window).chrome:
+        return 'chrome';
+      case agent.indexOf('trident') > -1:
+        return 'ie';
+      case agent.indexOf('firefox') > -1:
+        return 'firefox';
+      case agent.indexOf('safari') > -1:
+        return 'safari';
+      default:
+        return 'other';
+    }
   }
 
-  get f() {
-    return this.loginForm.controls;
-  }
 }
