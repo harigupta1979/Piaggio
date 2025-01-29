@@ -1,1 +1,29 @@
-<p>otp-verification works!</p>
+<div class="verify-otp-container">
+  <div class="verify-otp-sub-container">
+    <div class="verify-otp-mat-card">
+      <div class="verify-otp-content">
+        <div class="verify-otp-header">
+          <p class="verify-otp-heading">Enter OTP (One Time Password) sent to your Email Id ahmad123gmail.com</p>
+        </div>
+        <form>
+          <!-- OTP Input Field -->
+          <mat-form-field appearance="outline" class="form-field mb-2">
+            <mat-label class="verify-otp-mat-label">Enter OTP</mat-label>
+            <input matInput type="text" name="otp" formControlName="otp" required />
+          </mat-form-field>
+
+          <!-- Resend OTP and Timing in Same Row -->
+          <div class="otp-footer">
+            <a href="javascript:void(0);" class="resend-otp-link">Resend OTP</a>
+            <span class="otp-timer">00:30</span> <!-- Timer goes here -->
+
+          </div>
+
+          <div class="otp-button">
+            <button mat-flat-button>Verify OTP</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

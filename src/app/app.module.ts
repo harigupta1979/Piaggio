@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { HttpClient } from '@angular/common/http'; // Import HttpClient if needed for DI
 import { provideHttpClient } from '@angular/common/http';
+import { AuthService } from './Services/auth.service';
 
 @NgModule({
   declarations: [],
@@ -27,6 +28,7 @@ import { provideHttpClient } from '@angular/common/http';
   ],
   providers: [
     provideHttpClient(), // Provide the HTTP client here
+    AuthService,
     // Optionally, add interceptors or other HTTP-related providers if needed
   ],
 })

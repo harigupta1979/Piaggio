@@ -63,6 +63,7 @@ export class LoginComponent implements OnInit {
       }
       return;
     }
+    let data = await this.auth.GetLogin(loginForm);
   }
 
   get f() {

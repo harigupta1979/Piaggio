@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 @Component({
   selector: 'app-layout',
   standalone: true,
-  imports: [MaterialModule, RouterModule, HttpClientModule],
+  imports: [MaterialModule, RouterModule],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.css',
 })
