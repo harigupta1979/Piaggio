@@ -7,8 +7,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../Services/auth.service';
 import { Router } from '@angular/router';
-
 import { CryptoService } from '../../Services/crypto.service';
+import { SharedserviceService } from '../../Services/sharedservice.service';
+
 
 @Component({
   selector: 'app-login',
@@ -22,16 +23,10 @@ import { CryptoService } from '../../Services/crypto.service';
   ],
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
-  isSubmitting = false;
-  errorMessage: string | null = null;
+  loginForm!: FormGroup;isSubmitting = false;errorMessage: string | null = null;
 
-  constructor(
-    private fb: FormBuilder,
-    private auth: AuthService,
-    private router: Router,
-    private crypto: CryptoService
-  ) {}
+  constructor( private fb: FormBuilder,private auth: AuthService,private router: Router,
+    private crypto: CryptoService,public sharedService: SharedserviceService) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -64,7 +59,7 @@ export class LoginComponent implements OnInit {
       }
       return;
     }
-    debugger;
+
     localStorage.setItem('Dynemicmenu', '');
     let data:any = await this.auth.GetLogin(loginForm);
     if (data != null && data["FinalMode"] == "DataFound" && data["AdditionalParameter"] != "") {
@@ -103,11 +98,10 @@ export class LoginComponent implements OnInit {
         lastlogindatetime: 'Last logged on ' +Lastloggedon,
         avatar: './assets/images/avatar.jpg'
       }
-      // this.userprofile.push(CstuserProfile);
-      // await this.menu.setUserProfile(this.userprofile);
-      // await this.Getdynemicmenu();
-      // this.router.navigate(['/dashboard']);
-      // this.toastr.success("Successfully Login", 'Login');
+      //this.userprofile.push(CstuserProfile);
+      //await this.menu.setUserProfile(this.userprofile);
+      await this.Getdynemicmenu();
+      this.router.navigate(['/dashboard']);
     }
   }
   detectBrowserVersion() {
@@ -148,5 +142,22 @@ export class LoginComponent implements OnInit {
         return 'other';
     }
   }
+  async Getdynemicmenu() {
+    let logindata = '';
+    let data:any = await this.sharedService.GetDynemicmenu(localStorage.getItem('IsAdmin')??'', Number(localStorage.getItem('UserId')));
+    if (data != null) {
+      if (data["FinalMode"] == "DataFound" && JSON.parse(data["Data"][0].menu) != null) {
+        localStorage.setItem('Dynemicmenu', JSON.stringify(JSON.parse(data["Data"][0].menu)));
+      }
+      else {
+        localStorage.setItem('Dynemicmenu', logindata);
+      }
+    } else {
+      localStorage.setItem('Dynemicmenu', logindata);
+    }
+    //await this.menu.reset();
 
+    //await this.menu.set(localStorage.getItem('Dynemicmenu') == '' ? '' : JSON.parse(localStorage.getItem('Dynemicmenu')));
+
+  }
 }
