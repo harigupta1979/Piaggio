@@ -11,6 +11,8 @@ import { MaterialModule } from './material.module';
 import { HttpClient } from '@angular/common/http'; // Import HttpClient if needed for DI
 import { provideHttpClient } from '@angular/common/http';
 import { AuthService } from './Services/auth.service';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [],
@@ -25,6 +27,7 @@ import { AuthService } from './Services/auth.service';
     RouterModule,
     ReactiveFormsModule,
     MaterialModule,
+    AppRoutingModule,
   ],
   providers: [
     provideHttpClient(), // Provide the HTTP client here

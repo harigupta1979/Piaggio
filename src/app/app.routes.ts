@@ -16,7 +16,7 @@ export const routes: Routes = [
       { path: 'forgot-password', component: ForgotPasswordComponent },
       { path: 'otp-verification', component: OtpVerificationComponent },
       { path: 'set-password', component: SetPasswordComponent },
-      { path: '', redirectTo: 'forgot-password', pathMatch: 'full' },
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
     ],
   },
   {

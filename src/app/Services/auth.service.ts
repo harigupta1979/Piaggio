@@ -3,14 +3,11 @@ import { Router } from '@angular/router';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-
-
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   constructor(private http: HttpClient) {}
-
 
   // Http Headers
   httpOptions = {
@@ -93,6 +90,7 @@ export class AuthService {
   }
 
   async GenerateLoginOTP(obj: any) {
+    debugger;
     var body = JSON.stringify(obj);
     return await this.http
       .post(
