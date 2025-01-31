@@ -63,11 +63,7 @@ export class LoginComponent implements OnInit {
 
     localStorage.setItem('Dynemicmenu', '');
     let data: any = await this.auth.GetLogin(loginForm);
-    if (
-      data != null &&
-      data['FinalMode'] == 'DataFound' &&
-      data['AdditionalParameter'] != ''
-    ) {
+    if (data != null && data['FinalMode'] == 'DataFound' && data['AdditionalParameter'] != '') {
       var logindata = data['Data'][0];
       localStorage.setItem('UserId', logindata['USER_ID']);
       localStorage.setItem('UserName', logindata['USER_NAME']);
@@ -118,6 +114,12 @@ export class LoginComponent implements OnInit {
       await this.Getdynemicmenu();
       this.router.navigate(['/dashboard']);
     }
+    else {
+      localStorage.setItem('UserName', '');
+      alert("error while login,Please check!");
+      //this.toastr.error("error while login,Please check!", 'Login');
+    }
+    this.isSubmitting = false;
   }
   detectBrowserVersion() {
     var userAgent = navigator.userAgent,

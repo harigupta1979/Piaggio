@@ -90,7 +90,6 @@ export class AuthService {
   }
 
   async GenerateLoginOTP(obj: any) {
-    debugger;
     var body = JSON.stringify(obj);
     return await this.http
       .post(
