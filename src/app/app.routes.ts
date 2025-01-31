@@ -5,7 +5,8 @@ import { ForgotPasswordComponent } from './layout/forgot-password/forgot-passwor
 import { OtpVerificationComponent } from './layout/otp-verification/otp-verification.component';
 import { SetPasswordComponent } from './layout/set-password/set-password.component';
 import { NgModule } from '@angular/core';
-import { DashboardComponent } from './pages/pages/dashboard/dashboard.component';
+import { DashboardComponent } from './pages/side-nav/dashboard/dashboard.component';
+import { SideNavComponent } from './pages/side-nav/side-nav.component';
 
 export const routes: Routes = [
   {
@@ -20,8 +21,13 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
+    path: '',
+    component: SideNavComponent, // Uses Layout (Navbar + Sidebar)
+    children: [
+      { path: 'dashboard', component: DashboardComponent }, // Dashboard inside Layout
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // Default to Dashboard
+    ],
   },
+
   { path: '**', redirectTo: 'login' },
 ];

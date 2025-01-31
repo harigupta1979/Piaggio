@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 // Add more material modules here if needed
 @NgModule({
@@ -19,6 +20,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatToolbarModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatSidenavModule,
     // Add any other Material modules that you use across your app
   ],
   exports: [
@@ -30,7 +32,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatToolbarModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatSidenavModule,
     // Export the modules so they can be used in other modules
-  ]
+  ],
 })
 export class MaterialModule {}

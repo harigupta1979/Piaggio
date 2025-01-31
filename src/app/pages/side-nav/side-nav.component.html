@@ -1,0 +1,16 @@
+<!-- layout.component.html -->
+<app-top-navbar></app-top-navbar>
+<app-daynamic-side-nav></app-daynamic-side-nav>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened class="side-nav">
+    <mat-nav-list>
+      <button mat-button routerLink="/dashboard" class="nav-button">
+        <mat-icon>dashboard</mat-icon> Dashboard
+      </button>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet> <!-- The routed component will be injected here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

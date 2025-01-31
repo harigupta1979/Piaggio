@@ -28,3 +28,15 @@ body {
   background-color: #ff9800;
   color: white;
 }
+.mat-drawer-inner-container {
+  overflow-y: auto !important; /* Enables scrolling */
+  scrollbar-width: none; /* Hides scrollbar in Firefox */
+}
+
+.mat-drawer-inner-container::-webkit-scrollbar {
+  display: none; /* Hides scrollbar in Chrome, Safari, Edge */
+}
+.mat-expansion-panel-body {
+  padding: 1px !important;
+  margin-left: 15px; /* Add slight spacing */
+}

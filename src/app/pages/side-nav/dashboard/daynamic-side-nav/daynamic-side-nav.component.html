@@ -1,0 +1,101 @@
+<mat-drawer-container class="example-container">
+  <!-- Sidebar -->
+  <mat-drawer #sidenav mode="side" [opened]="true" class="side-nav" [class.collapsed]="isCollapsed">
+    <mat-nav-list>
+      <!-- Sidebar Header with Logo & Toggle Button -->
+      <div class="sidenav-header">
+        <button mat-button routerLink="/dashboard" class="nav-button" (click)="setActive('dashboard')">
+          <mat-icon class="nav-icon">dashboard</mat-icon>
+          <span class="mat-list-title-text" *ngIf="!isCollapsed">Dashboard</span>
+        </button>
+        <!-- Sidebar Toggle Button -->
+        <button mat-icon-button (click)="toggleSidenav()" class="toggle-btn">
+          <mat-icon>{{ isCollapsed ? 'menu_open' : 'menu_open' }}</mat-icon>
+        </button>
+      </div>
+      <!-- Separator -->
+      <div class="border-end"></div>
+      <!-- Admin Section -->
+      <mat-expansion-panel [expanded]="!isCollapsed" class="small-panel">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon class="nav-icon material-symbols-outlined">account_circle </mat-icon>
+            <span *ngIf="!isCollapsed" class="mat-list-title-text">Admin</span>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-list>
+          <mat-list-item (click)="setActive('user_role')" [class.active]="activeItem === 'user_role'">
+            <div class="nav-list-text">
+              <mat-icon class="nav-icon">person_add</mat-icon>
+              <span class="mat-list-text" *ngIf="!isCollapsed">User & Role</span>
+            </div>
+          </mat-list-item>
+          <mat-list-item (click)="setActive('campaign')" [class.active]="activeItem === 'campaign'">
+            <div class="nav-list-text">
+              <mat-icon class="nav-icon">campaign</mat-icon>
+              <span *ngIf="!isCollapsed" class="mat-list-text">Campaign</span>
+            </div>
+          </mat-list-item>
+          <mat-list-item (click)="setActive('dealer_onboarding')" [class.active]="activeItem === 'dealer_onboarding'">
+            <div class="nav-list-text">
+              <mat-icon class="nav-icon">campaign</mat-icon>
+              <span *ngIf="!isCollapsed" class="mat-list-text">Dealer Onboarding</span>
+            </div>
+          </mat-list-item>
+          <mat-list-item (click)="setActive('marketing_firm')" [class.active]="activeItem === 'marketing_firm'">
+            <div class="nav-list-text">
+              <mat-icon class="nav-icon">local_mall</mat-icon>
+              <span *ngIf="!isCollapsed" class="mat-list-text">Marketing Firm</span>
+            </div>
+          </mat-list-item>
+          <mat-list-item (click)="setActive('invoice_access')" [class.active]="activeItem === 'invoice_access'">
+            <div class="nav-list-text">
+              <mat-icon class="nav-icon">campaign</mat-icon>
+              <span *ngIf="!isCollapsed" class="mat-list-text">Invoice Access</span>
+            </div>
+          </mat-list-item>
+          <mat-list-item (click)="setActive('campaign_update')" [class.active]="activeItem === 'campaign_update'">
+            <div class="nav-list-text">
+              <mat-icon class="nav-icon">update</mat-icon>
+              <span *ngIf="!isCollapsed" class="mat-list-text">Campaign Update</span>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+      <div class="border-end"></div>
+      <!-- Accounts Section -->
+      <mat-expansion-panel [expanded]="!isCollapsed" class="small-panel">
+        <mat-expansion-panel-header>
+          <div class="nav-list-text">
+            <mat-panel-title>
+              <mat-icon class="nav-icon">account_balance</mat-icon>
+              <span *ngIf="!isCollapsed" class="mat-list-title-text">Accounts</span>
+            </mat-panel-title>
+          </div>
+        </mat-expansion-panel-header>
+
+        <mat-list>
+          <mat-list-item (click)="setActive('account1')" [class.active]="activeItem === 'account1'">
+            <div class="nav-list-text">
+              <mat-icon class="nav-icon">account_box</mat-icon>
+              <span *ngIf="!isCollapsed" class="mat-list-text">Account 1</span>
+            </div>
+          </mat-list-item>
+          <mat-list-item (click)="setActive('account2')" [class.active]="activeItem === 'account2'">
+            <div class="nav-list-text">
+              <mat-icon class="nav-icon">account_box</mat-icon>
+              <span *ngIf="!isCollapsed" class="mat-list-text">Account 2</span>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </mat-expansion-panel>
+      <div class="border-end"></div>
+    </mat-nav-list>
+  </mat-drawer>
+
+  <!-- Main Content -->
+  <mat-drawer-content class="content-container" [class.shrink]="isCollapsed">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
