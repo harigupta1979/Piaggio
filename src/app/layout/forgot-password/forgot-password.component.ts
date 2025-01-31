@@ -60,7 +60,6 @@ export class ForgotPasswordComponent {
   }
 
   async generateOTP() {
-    debugger;
     this.isSubmitting = true;
     this.isOTPVerified = false;
     const forgetpwdForm = {
@@ -71,7 +70,6 @@ export class ForgotPasswordComponent {
       return;
     }
     let dt: any = await this.auth.GenerateLoginOTP(forgetpwdForm);
-    debugger;
     if (dt && dt['Message'] === 'Success') {
       this.toastr.success('OTP Send Successfully', 'Reset Password');
       this.isShowtxtOtp = true;
