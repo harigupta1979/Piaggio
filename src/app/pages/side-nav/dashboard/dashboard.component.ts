@@ -6,7 +6,7 @@ import { DaynamicSideNavComponent } from './daynamic-side-nav/daynamic-side-nav.
 
 @Component({
   selector: 'app-dashboard',
-  imports: [TopNavbarComponent, MaterialModule],
+  imports: [MaterialModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })

@@ -25,39 +25,40 @@
         </mat-expansion-panel-header>
 
         <mat-list>
-          <mat-list-item (click)="setActive('user_role')" [class.active]="activeItem === 'user_role'">
+          <mat-list-item routerLink="/user-roles-permissions" (click)="setActive('user_role')"
+            [class.active]="activeItem === 'user_role'">
             <div class="nav-list-text">
-              <mat-icon class="nav-icon">person_add</mat-icon>
+              <mat-icon class="nav-icon material-symbols-outlined">person_add</mat-icon>
               <span class="mat-list-text" *ngIf="!isCollapsed">User & Role</span>
             </div>
           </mat-list-item>
           <mat-list-item (click)="setActive('campaign')" [class.active]="activeItem === 'campaign'">
             <div class="nav-list-text">
-              <mat-icon class="nav-icon">campaign</mat-icon>
+              <mat-icon class="nav-icon material-symbols-outlined">campaign</mat-icon>
               <span *ngIf="!isCollapsed" class="mat-list-text">Campaign</span>
             </div>
           </mat-list-item>
           <mat-list-item (click)="setActive('dealer_onboarding')" [class.active]="activeItem === 'dealer_onboarding'">
             <div class="nav-list-text">
-              <mat-icon class="nav-icon">campaign</mat-icon>
+              <mat-icon class="nav-icon material-symbols-outlined">assignment_ind</mat-icon>
               <span *ngIf="!isCollapsed" class="mat-list-text">Dealer Onboarding</span>
             </div>
           </mat-list-item>
           <mat-list-item (click)="setActive('marketing_firm')" [class.active]="activeItem === 'marketing_firm'">
             <div class="nav-list-text">
-              <mat-icon class="nav-icon">local_mall</mat-icon>
+              <mat-icon class="nav-icon material-symbols-outlined">local_mall</mat-icon>
               <span *ngIf="!isCollapsed" class="mat-list-text">Marketing Firm</span>
             </div>
           </mat-list-item>
           <mat-list-item (click)="setActive('invoice_access')" [class.active]="activeItem === 'invoice_access'">
             <div class="nav-list-text">
-              <mat-icon class="nav-icon">campaign</mat-icon>
+              <mat-icon class="nav-icon material-symbols-outlined">unknown_document</mat-icon>
               <span *ngIf="!isCollapsed" class="mat-list-text">Invoice Access</span>
             </div>
           </mat-list-item>
           <mat-list-item (click)="setActive('campaign_update')" [class.active]="activeItem === 'campaign_update'">
             <div class="nav-list-text">
-              <mat-icon class="nav-icon">update</mat-icon>
+              <mat-icon class="nav-icon material-symbols-outlined">update</mat-icon>
               <span *ngIf="!isCollapsed" class="mat-list-text">Campaign Update</span>
             </div>
           </mat-list-item>
@@ -69,7 +70,7 @@
         <mat-expansion-panel-header>
           <div class="nav-list-text">
             <mat-panel-title>
-              <mat-icon class="nav-icon">account_balance</mat-icon>
+              <mat-icon class="nav-icon material-symbols-outlined">account_balance</mat-icon>
               <span *ngIf="!isCollapsed" class="mat-list-title-text">Accounts</span>
             </mat-panel-title>
           </div>
@@ -78,13 +79,13 @@
         <mat-list>
           <mat-list-item (click)="setActive('account1')" [class.active]="activeItem === 'account1'">
             <div class="nav-list-text">
-              <mat-icon class="nav-icon">account_box</mat-icon>
+              <mat-icon class="nav-icon material-symbols-outlined">account_box</mat-icon>
               <span *ngIf="!isCollapsed" class="mat-list-text">Account 1</span>
             </div>
           </mat-list-item>
           <mat-list-item (click)="setActive('account2')" [class.active]="activeItem === 'account2'">
             <div class="nav-list-text">
-              <mat-icon class="nav-icon">account_box</mat-icon>
+              <mat-icon class="nav-icon material-symbols-outlined">account_box</mat-icon>
               <span *ngIf="!isCollapsed" class="mat-list-text">Account 2</span>
             </div>
           </mat-list-item>

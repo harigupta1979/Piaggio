@@ -9,8 +9,8 @@ import { DaynamicSideNavComponent } from './dashboard/daynamic-side-nav/daynamic
   imports: [
     MaterialModule,
     RouterModule,
-    TopNavbarComponent,
     DaynamicSideNavComponent,
+    TopNavbarComponent,
   ],
   templateUrl: './side-nav.component.html',
   styleUrl: './side-nav.component.css',

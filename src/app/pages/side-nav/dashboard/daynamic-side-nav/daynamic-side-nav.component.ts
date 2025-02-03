@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MaterialModule } from '../../../../shared/material.module';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-daynamic-side-nav',
@@ -9,14 +9,18 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   styleUrl: './daynamic-side-nav.component.css',
 })
 export class DaynamicSideNavComponent {
-  isCollapsed = false; // Default is expanded
+  isCollapsed = false;
   activeItem: string = '';
+  constructor(private router: Router) {}
 
   toggleSidenav() {
-    this.isCollapsed = !this.isCollapsed; // Toggle collapse state
+    this.isCollapsed = !this.isCollapsed;
   }
 
   setActive(item: string) {
-    this.activeItem = item; // Set active state
+    this.activeItem = item;
+  }
+  navigateToUserRole() {
+    this.router.navigate(['user-roles-permissions']);
   }
 }
