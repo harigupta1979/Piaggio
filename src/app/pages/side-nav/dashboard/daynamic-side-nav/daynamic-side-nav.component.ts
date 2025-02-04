@@ -11,16 +11,79 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 export class DaynamicSideNavComponent {
   isCollapsed = false;
   activeItem: string = '';
+  // Sidebar Data - either fetched from an API or defined locally
+  sidebarData = {
+    sections: [
+      {
+        title: 'Admin',
+        icon: 'account_circle',
+        items: [
+          {
+            label: 'User & Role',
+            icon: 'person_add',
+            route: '/user-roles-permissions',
+          },
+          { label: 'Campaign', icon: 'campaign', route: '/campaign' },
+          {
+            label: 'Dealer Onboarding',
+            icon: 'assignment_ind',
+            route: '/dealer-onboarding',
+          },
+          {
+            label: 'Marketing Firm',
+            icon: 'local_mall',
+            route: '/marketing-firm',
+          },
+          {
+            label: 'Invoice Access',
+            icon: 'unknown_document',
+            route: '/invoice-access',
+          },
+          {
+            label: 'Campaign Update',
+            icon: 'update',
+            route: '/campaign-update',
+          },
+        ],
+      },
+      {
+        title: 'Accounts',
+        icon: 'account_balance',
+        items: [
+          { label: 'Account 1', icon: 'account_box', route: '/account1' },
+          { label: 'Account 2', icon: 'account_box', route: '/account2' },
+        ],
+      },
+    ],
+  };
+
   constructor(private router: Router) {}
 
   toggleSidenav() {
     this.isCollapsed = !this.isCollapsed;
   }
-
+  onToggleSidenav(opened: boolean) {
+    this.isCollapsed = !opened; // Sync state with the drawer's opened/closed state
+  }
   setActive(item: string) {
     this.activeItem = item;
   }
-  navigateToUserRole() {
-    this.router.navigate(['user-roles-permissions']);
+
+  navigateTo(route: string) {
+    this.router.navigate([route]);
   }
 }
+// isCollapsed = false;
+// activeItem: string = '';
+// constructor(private router: Router) {}
+
+// toggleSidenav() {
+//   this.isCollapsed = !this.isCollapsed;
+// }
+
+// setActive(item: string) {
+//   this.activeItem = item;
+// }
+// navigateToUserRole() {
+//   this.router.navigate(['user-roles-permissions']);
+// }
