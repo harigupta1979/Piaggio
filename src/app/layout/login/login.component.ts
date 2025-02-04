@@ -97,6 +97,7 @@ export class LoginComponent implements OnInit {
       } else {
         localStorage.setItem('LOGIN_DATETIME', new Date().toString());
       }
+      
       //await this.menu.resetUserProfile();
       var Lastloggedon =
         ActivityData == null
