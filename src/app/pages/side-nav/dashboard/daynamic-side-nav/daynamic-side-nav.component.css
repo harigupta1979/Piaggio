@@ -84,10 +84,13 @@
   padding: 8px 15px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
+
 .mat-list-item:hover .nav-icon,
 .mat-list-item:hover .nav-text {
-  color: #2286d1;
+  color: #2286d1 !important;
+  background-color: #e3f2fd;
 }
 .small-panel {
   background-color: transparent;

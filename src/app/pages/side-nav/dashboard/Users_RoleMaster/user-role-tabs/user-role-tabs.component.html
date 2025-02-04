@@ -8,7 +8,7 @@
     <mat-tab-group [(selectedIndex)]="selectedTabIndex" (selectedIndexChange)="onTabChange($event)">
       <mat-tab label="User"></mat-tab>
       <mat-tab label="Role"></mat-tab>
-      <mat-tab label="Permission"></mat-tab>
+      <mat-tab label="Permissions"></mat-tab>
     </mat-tab-group>
 
     <!-- Search Bar in the Center -->
@@ -29,10 +29,13 @@
         <mat-icon>add</mat-icon> Add Role
       </button>
     </ng-container>
-
-    <ng-container *ngIf="selectedTabIndex === 2">
-      <!-- No button for Permission Tab -->
+    <ng-container *ngIf="selectedTabIndex === 2 && isSaveVisible">
+      <button mat-stroked-button color="primary" (click)="savePermissions()">
+        <mat-icon>save</mat-icon> Save
+      </button>
     </ng-container>
+
+
   </div>
 
   <router-outlet></router-outlet>

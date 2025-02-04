@@ -65,3 +65,9 @@ button {
   opacity: 80%;
   font-family: Mukta vaani;
 }
+/* Default tab label styling */
+.mat-mdc-tab .mdc-tab__text-label {
+  font-family: "Mukta Vaani", sans-serif; /* Correct font declaration */
+  font-size: 18px;
+  color: #000; /* Default color for inactive tabs */
+}

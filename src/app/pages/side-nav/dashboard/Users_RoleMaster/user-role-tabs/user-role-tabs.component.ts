@@ -11,12 +11,17 @@ import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-role-tabs',
+  standalone: true,
   imports: [MaterialModule, RouterModule],
   templateUrl: './user-role-tabs.component.html',
   styleUrl: './user-role-tabs.component.css',
 })
 export class UserRoleTabsComponent {
   selectedTabIndex = 0;
+  isSaveVisible = false;
+  selectedPermission: any = null;
+  selectedRole: any = null;
+  selectedModule: any = null;
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
@@ -49,5 +54,16 @@ export class UserRoleTabsComponent {
   onTabChange(index: number) {
     const routes = ['user', 'role', 'permission'];
     this.router.navigate([routes[index]], { relativeTo: this.route });
+    this.selectedTabIndex = index;
+    this.isSaveVisible = false;
+  }
+  onPermissionSelect(permission: any) {
+    this.selectedPermission = permission;
+    this.isSaveVisible = true; // Show Save button when an option is selected
+  }
+
+  savePermissions() {
+    this.isSaveVisible = false;
+    console.log('Saving permissions:', this.selectedPermission);
   }
 }

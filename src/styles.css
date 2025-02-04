@@ -40,3 +40,20 @@ body {
   padding: 1px !important;
   margin-left: 15px; /* Add slight spacing */
 }
+
+.mdc-list-item--with-trailing-radio.mdc-list-item,
+.mdc-list-item--with-trailing-checkbox.mdc-list-item {
+  height: auto !important;
+}
+.mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+  color: #2286d1 !important;
+}
+.mdc-list-item--with-trailing-checkbox .mat-selected {
+  background-color: #2286d199 !important;
+}
+
+.mdc-list-item__primary-text {
+  font-size: 14px !important;
+  color: #1d1b20 !important;
+  opacity: 80% !important;
+}
