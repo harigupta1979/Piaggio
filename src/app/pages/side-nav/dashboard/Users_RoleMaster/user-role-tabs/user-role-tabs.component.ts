@@ -7,6 +7,7 @@ import {
   RouterModule,
 } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-role-tabs',
@@ -15,10 +16,38 @@ import { filter } from 'rxjs/operators';
   styleUrl: './user-role-tabs.component.css',
 })
 export class UserRoleTabsComponent {
-  selectedTabIndex: number = 0; // Default to "User" tab (index 0)
+  selectedTabIndex = 0;
 
-  onTabChange(event: number) {
-    // Capture the selected tab index
-    this.selectedTabIndex = event;
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.setActiveTab();
+      }
+    });
+    this.setActiveTab(); // For initial load
+  }
+
+  setActiveTab() {
+    const currentRoute = this.route.firstChild?.snapshot.url[0]?.path;
+    switch (currentRoute) {
+      case 'user':
+        this.selectedTabIndex = 0;
+        break;
+      case 'role':
+        this.selectedTabIndex = 1;
+        break;
+      case 'permission':
+        this.selectedTabIndex = 2;
+        break;
+      default:
+        this.selectedTabIndex = 0;
+    }
+  }
+
+  onTabChange(index: number) {
+    const routes = ['user', 'role', 'permission'];
+    this.router.navigate([routes[index]], { relativeTo: this.route });
   }
 }
