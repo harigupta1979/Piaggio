@@ -1,4 +1,5 @@
 /* Base styles */
+
 .mat-drawer-container {
   height: 100vh !important;
   width: 100% !important;
@@ -16,7 +17,6 @@
   width: 100%;
   margin-top: 2%;
   padding-left: 1%;
-  transition: margin-left 0.3s ease-in-out; /* Smooth transition */
 }
 .side-nav {
   box-shadow: 0px 2px 4px 0px #4080e040;
@@ -27,8 +27,16 @@
   padding: 0;
   transition: width 0.3s ease-in-out;
 }
+
 .border-end {
   border-bottom: 1px solid #33333340;
+}
+.logo-img {
+  width: 100px;
+  height: auto;
+}
+.side-nav.collapsed .logo-img {
+  width: 80px;
 }
 .sidenav-header {
   display: flex;
@@ -89,8 +97,7 @@
 }
 .mat-list-item:hover .nav-icon,
 .mat-list-item:hover .nav-text {
-  color: #2286d1 !important;
-  background-color: #e3f2fd;
+  color: #2286d1;
 }
 .small-panel {
   background-color: transparent;
@@ -101,10 +108,8 @@
 .small-panel:last-child {
   border-bottom: none;
 }
-
-/* When sidebar is collapsed */
 .side-nav.collapsed {
-  width: 80px; /* Sidebar collapsed width */
+  width: 80px;
 }
 .side-nav.collapsed .nav-button {
   padding: 8px;
@@ -118,18 +123,32 @@
   color: #333333;
   opacity: 60%;
 }
-
-/* Main content styles */
 .content-container {
   flex-grow: 1;
   padding: 0 20px;
   transition: margin-left 0.3s ease-in-out;
-  /* Initially, no margin is added */
 }
-
-/* This class will be applied when the sidebar is expanded */
 .content-container.shrink {
-  margin-left: 20%; /* When expanded, push content to the right */
+  margin-left: 80px;
+}
+.mat-expansion-panel {
+  height: 4% !important;
+  width: 100%;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  background-color: transparent;
+}
+.mat-expansion-panel-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+}
+.mat-expansion-panel-header.mat-expanded {
+  height: 20px;
+}
+.mdc-list {
+  margin: 0;
+  padding: 0px;
 }
 
 /* Responsive Styles */
@@ -144,7 +163,7 @@
     padding: 15px;
   }
   .content-container.shrink {
-    margin-left: 25%; /* Adjust for the reduced sidebar width */
+    margin-left: 60px;
   }
 }
 
@@ -163,9 +182,6 @@
   }
   .content-container {
     padding: 10px;
-  }
-  .content-container.shrink {
-    margin-left: 80px; /* Adjust for the reduced sidebar width */
   }
 }
 
@@ -187,9 +203,5 @@
   }
   .content-container {
     padding: 5px;
-  }
-  .content-container.shrink {
-    margin-left: 0; /* No margin for mobile */
-    width: 100%;
   }
 }
