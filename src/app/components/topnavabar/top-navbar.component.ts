@@ -3,6 +3,7 @@ import { MaterialModule } from '../../shared/material.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-top-navbar',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrl: './top-navbar.component.css',
 })
 export class TopNavbarComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router,private authservice: AuthService) {}
   viewProfile() {
     this.router.navigate(['/profile']);
   }
@@ -21,7 +22,8 @@ export class TopNavbarComponent {
     this.router.navigate(['/change-password']);
   }
 
-  logout() {
+  async logout() {
+    await this.authservice.logout();
     localStorage.removeItem('userRole'); // Clear user session
     this.router.navigate(['/login']);
   }

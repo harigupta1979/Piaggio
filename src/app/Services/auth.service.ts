@@ -200,6 +200,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('JwtToken');
     localStorage.removeItem('UserName');
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 }
