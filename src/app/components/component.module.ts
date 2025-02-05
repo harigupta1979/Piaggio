@@ -1,16 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { UserRoleTabsComponent } from './user-role-master/user-role-tabs/user-role-tabs.component';
 
 
 export const baseRoutes: Routes =[
-//   { path: '', component: HomeComponent },
-//   { path: 'home', component: HomeComponent },
-//   { path: 'motor', 
-//     component:StepperComponent,
-//       loadChildren: () => import('../component/motor/motor.module').then(m => m.MotorModule) 
-//      },
-]
+ 
+    { path: 'dashboard', component: DashboardComponent },
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    {
+      path: 'user-roles-permissions',
+      component: UserRoleTabsComponent,
+      loadChildren: () => import('./user-role-master/user-role-master.module').then(m => m.UserRoleModule) 
+     },
+   
+  ]
+
 
 
 @NgModule({

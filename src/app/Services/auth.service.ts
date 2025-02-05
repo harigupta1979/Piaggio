@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router: Router) {}
 
   // Http Headers
   httpOptions = {
@@ -147,6 +147,13 @@ export class AuthService {
         }
       );
   }
+  getToken(): string | null {
+    return localStorage.getItem('JwtToken'); // Fetch token from storage
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.getToken(); // Check if token exists
+  }
   // user: any;
   // token: any = '';
 
@@ -190,11 +197,9 @@ export class AuthService {
   //   return false;
   // }
 
-  // logout() {
-  //   this.user = null;
-  //   this.token = '';
-  //   localStorage.removeItem('token');
-  //   localStorage.removeItem('user');
-  //   this.router.navigate(['/login']);
-  // }
+  logout() {
+    localStorage.removeItem('JwtToken');
+    localStorage.removeItem('UserName');
+    this.router.navigate(['/login']);
+  }
 }
