@@ -57,3 +57,17 @@ body {
   color: #1d1b20 !important;
   opacity: 80% !important;
 }
+th {
+  padding-top: 18px !important;
+  text-align: center !important;
+  font-size: 14px !important;
+  text-align: center;
+  text-wrap: nowrap !important;
+}
+td {
+  color: #1d1b20 !important;
+  opacity: 80% !important;
+  font-size: 13px;
+  text-align: center;
+  font-family: Mukta Vaani !important;
+}

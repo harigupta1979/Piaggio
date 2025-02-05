@@ -36,10 +36,11 @@
 }
 th {
   color: #000000;
+  padding-top: 18px !important;
   text-align: center;
   text-wrap: nowrap !important;
   padding-top: 15px;
-  font-size: 14px;
+  font-size: 16px;
   border-bottom: 1px solid #ccdeeb !important;
 }
 td {
