@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MaterialModule } from '../../../shared/material.module';
+import { MaterialModule } from '../../shared/material.module';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router } from '@angular/router';

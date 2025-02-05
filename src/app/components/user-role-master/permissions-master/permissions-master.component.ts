@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { MaterialModule } from '../../../../../shared/material.module';
+import { MaterialModule } from '../../../shared/material.module';
 import { ROLES } from '../permission-data';
-import { Module, Role } from '../role.model';
+import { Module, Role } from '../user-master/role.model';
 
 @Component({
   selector: 'app-permissions-master',

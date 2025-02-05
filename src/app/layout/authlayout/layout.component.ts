@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MaterialModule } from '../material.module';
-import { LoginComponent } from './login/login.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { MaterialModule } from '../../material.module';
+import { LoginComponent } from '../../auth/login/login.component';
+import { ForgotPasswordComponent } from '../../auth/forgot-password/forgot-password.component';
 
 @Component({
   selector: 'app-layout',

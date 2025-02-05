@@ -1,15 +1,15 @@
 import { RouterModule, Routes } from '@angular/router';
-import { LayoutComponent } from './layout/layout.component';
-import { LoginComponent } from './layout/login/login.component';
-import { ForgotPasswordComponent } from './layout/forgot-password/forgot-password.component';
-import { OtpVerificationComponent } from './layout/otp-verification/otp-verification.component';
-import { SetPasswordComponent } from './layout/set-password/set-password.component';
-import { DashboardComponent } from './pages/side-nav/dashboard/dashboard.component';
-import { SideNavComponent } from './pages/side-nav/side-nav.component';
-import { UserRoleTabsComponent } from './pages/side-nav/dashboard/Users_RoleMaster/user-role-tabs/user-role-tabs.component';
-import { UserMasterComponent } from './pages/side-nav/dashboard/Users_RoleMaster/user-master/user-master.component';
-import { RoleMasterComponent } from './pages/side-nav/dashboard/Users_RoleMaster/role-master/role-master.component';
-import { PermissionsMasterComponent } from './pages/side-nav/dashboard/Users_RoleMaster/permissions-master/permissions-master.component';
+import { LayoutComponent } from './layout/authlayout/layout.component';
+import { LoginComponent } from './auth/login/login.component';
+import { ForgotPasswordComponent } from './auth/forgot-password/forgot-password.component';
+import { OtpVerificationComponent } from './auth/otp-verification/otp-verification.component';
+import { SetPasswordComponent } from './auth/set-password/set-password.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
+import { UserRoleTabsComponent } from './components/user-role-master/user-role-tabs/user-role-tabs.component';
+import { UserMasterComponent } from './components/user-role-master/user-master/user-master.component';
+import { RoleMasterComponent } from './components/user-role-master/role-master/role-master.component';
+import { PermissionsMasterComponent } from './components/user-role-master/permissions-master/permissions-master.component';
 import { NgModule } from '@angular/core';
 
 export const routes: Routes = [
@@ -26,7 +26,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: SideNavComponent,
+    component: MainLayoutComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },

@@ -1,6 +1,6 @@
 // data/permission-data.ts
 
-import { Role } from './role.model';
+import { Role } from './user-master/role.model';
 
 export const ROLES: Role[] = [
   {

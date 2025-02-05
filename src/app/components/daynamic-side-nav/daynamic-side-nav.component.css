@@ -1,0 +1,195 @@
+/* Base styles */
+.mat-drawer-container {
+  height: 100vh !important;
+  width: 100% !important;
+  display: flex;
+  overflow: hidden;
+}
+.mat-drawer-content {
+  flex-grow: 1;
+  padding: auto;
+  margin-bottom: 10%;
+}
+.example-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  margin-top: 2%;
+  padding-left: 1%;
+  transition: margin-left 0.3s ease-in-out; /* Smooth transition */
+}
+.side-nav {
+  box-shadow: 0px 2px 4px 0px #4080e040;
+  width: 20%;
+  height: 100vh;
+  border-radius: 12px;
+  background-color: #ffffff;
+  padding: 0;
+  transition: width 0.3s ease-in-out;
+}
+.border-end {
+  border-bottom: 1px solid #33333340;
+}
+.sidenav-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  position: relative;
+  width: 100%;
+}
+.nav-button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background 0.3s, color 0.3s;
+  justify-content: flex-start;
+}
+.nav-button:hover {
+  background-color: transparent;
+  color: #2286d1;
+}
+.mat-list-text {
+  font-size: 14px;
+  color: #1d1b20;
+  font-weight: 500;
+  opacity: 80%;
+  cursor: pointer;
+}
+.mat-list-text::after {
+  color: #2286d1;
+}
+.nav-icon {
+  color: #333333;
+  opacity: 60%;
+  margin-right: 10px;
+  padding: 12px 0px;
+}
+.toggle-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+.nav-list-text {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.mat-list-item {
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.mat-list-item:hover .nav-icon,
+.mat-list-item:hover .nav-text {
+  color: #2286d1 !important;
+  background-color: #e3f2fd;
+}
+.small-panel {
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  border-bottom: none;
+}
+.small-panel:last-child {
+  border-bottom: none;
+}
+
+/* When sidebar is collapsed */
+.side-nav.collapsed {
+  width: 80px; /* Sidebar collapsed width */
+}
+.side-nav.collapsed .nav-button {
+  padding: 8px;
+  justify-content: center;
+}
+.side-nav.collapsed .nav-text {
+  display: none;
+}
+.side-nav.collapsed .nav-icon {
+  margin-right: 0;
+  color: #333333;
+  opacity: 60%;
+}
+
+/* Main content styles */
+.content-container {
+  flex-grow: 1;
+  padding: 0 20px;
+  transition: margin-left 0.3s ease-in-out;
+  /* Initially, no margin is added */
+}
+
+/* This class will be applied when the sidebar is expanded */
+.content-container.shrink {
+  margin-left: 20%; /* When expanded, push content to the right */
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 1024px) {
+  .side-nav {
+    width: 25%;
+  }
+  .side-nav.collapsed {
+    width: 60px;
+  }
+  .content-container {
+    padding: 15px;
+  }
+  .content-container.shrink {
+    margin-left: 25%; /* Adjust for the reduced sidebar width */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .side-nav {
+    width: 80px;
+  }
+  .side-nav.collapsed {
+    width: 50px;
+  }
+  .nav-text {
+    display: none;
+  }
+  .toggle-btn {
+    right: 5px;
+  }
+  .content-container {
+    padding: 10px;
+  }
+  .content-container.shrink {
+    margin-left: 80px; /* Adjust for the reduced sidebar width */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .side-nav {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    z-index: 1000;
+  }
+  .side-nav.collapsed {
+    width: 0;
+    overflow: hidden;
+  }
+  .toggle-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  .content-container {
+    padding: 5px;
+  }
+  .content-container.shrink {
+    margin-left: 0; /* No margin for mobile */
+    width: 100%;
+  }
+}
