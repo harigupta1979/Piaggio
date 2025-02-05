@@ -9,14 +9,15 @@ import { dbCommonService } from '../../service/commonservice.service';
   templateUrl: './role-master.component.html',
   styleUrl: './role-master.component.css',
 })
-
 export class RoleMasterComponent {
-  constructor(private service: dbUserRoleService,private sharedservice: dbCommonService,) {}
+  constructor(
+    private service: dbUserRoleService,
+    private sharedservice: dbCommonService
+  ) {}
 
   async ngOnInit() {
     await this.getrole();
     await this.getrollist();
-   
   }
   displayedColumns: string[] = [
     'RoleName',
@@ -26,7 +27,8 @@ export class RoleMasterComponent {
     'action',
   ];
   campaignList: any[] = [];
-  list: any[] = [];dataLength=true;
+  list: any[] = [];
+  dataLength = true;
   // Sample data for the table
   dataSource = [
     {
@@ -50,28 +52,21 @@ export class RoleMasterComponent {
     // Add more sample data here
   ];
   async getrole() {
-   
-    let dataobj : Record<string, any>| null | undefined= await this.sharedservice.GetSelection("role", '', 0, 0);
+    let dataobj: Record<string, any> | null | undefined =
+      await this.sharedservice.GetSelection('role', '', 0, 0);
     if (dataobj != null) {
-      
-        this.campaignList = dataobj["Data"];
-      
+      this.campaignList = dataobj['Data'];
     }
   }
   async getrollist() {
-    const obj={
-      RoleName:null
-    }
+    const obj = {
+      RoleName: null,
+    };
     const data = await this.service.GetRoleList(obj);
-   
-    if(data != null ){
-      console.log(data,'data')  
-      
-      }
-      else{
-       
-        this.dataLength=false;
-      }
-   
+
+    if (data != null) {
+    } else {
+      this.dataLength = false;
+    }
   }
 }

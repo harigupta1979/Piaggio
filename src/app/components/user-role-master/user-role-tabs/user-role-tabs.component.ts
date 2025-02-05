@@ -64,6 +64,5 @@ export class UserRoleTabsComponent {
 
   savePermissions() {
     this.isSaveVisible = false;
-    console.log('Saving permissions:', this.selectedPermission);
   }
 }
