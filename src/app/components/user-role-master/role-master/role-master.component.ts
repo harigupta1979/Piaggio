@@ -19,6 +19,10 @@ export class RoleMasterComponent {
     await this.getrole();
     await this.getrollist();
   }
+  campaignList: any[] = [];
+  list: any[] = [];
+  dataLength = true;
+  dataSource: any[] = [];
   displayedColumns: string[] = [
     'RoleName',
     'permission',
@@ -26,43 +30,26 @@ export class RoleMasterComponent {
     'status',
     'action',
   ];
-  campaignList: any[] = [];
-  list: any[] = [];
-  dataLength = true;
-  // Sample data for the table
-  dataSource = [
-    {
-      RoleName: 'John Doe',
-      permission: 'Admin',
-      createdDate: new Date('10/12/2023'),
-      status: 'Active',
-    },
-    {
-      RoleName: 'Jane Smith',
-      permission: 'Manager',
-      createdDate: new Date('10/12/2023'),
-      status: 'Inactive',
-    },
-    {
-      RoleName: 'Jane Smith',
-      permission: 'Manager',
-      createdDate: new Date('10/12/2023'),
-      status: 'Inactive',
-    },
-    // Add more sample data here
-  ];
   async getrole() {
     let dataobj: Record<string, any> | null | undefined =
       await this.sharedservice.GetSelection('role', '', 0, 0);
-    if (dataobj != null) {
-      this.campaignList = dataobj['Data'];
+
+    if (dataobj && dataobj['Data']) {
+      this.dataSource = dataobj['Data'].map((item: any) => ({
+        RoleName: item.NAME,
+        permission: '',
+        createdDate: new Date(),
+        status: 'Active',
+      }));
     }
   }
+
   async getrollist() {
     const obj = {
       RoleName: null,
     };
     const data = await this.service.GetRoleList(obj);
+    console.log(obj, 'rolename');
 
     if (data != null) {
     } else {
