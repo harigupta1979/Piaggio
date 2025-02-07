@@ -1,0 +1,59 @@
+.role-main-container {
+  padding: 10px;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.role-head-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.role-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.mat-form-field {
+  height: 50px;
+}
+
+.form-field {
+  width: 48%; /* Adjusted to make it more responsive */
+}
+
+.form-row-desc {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.form-field-desc {
+  width: 100%;
+}
+
+textarea.mat-input-element {
+  height: 30px; /* Ensure description has a fixed height */
+  padding: 8px;
+  font-size: 14px;
+}
+
+.form-row-button {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+button {
+  margin-top: 20px; /* Adds space above the submit button */
+}

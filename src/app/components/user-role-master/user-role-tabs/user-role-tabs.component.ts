@@ -8,6 +8,8 @@ import {
 } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
+import { AddRoleFormComponent } from '../add-role-form/add-role-form.component';
+import { AddUserFormComponent } from '../add-user-form/add-user-form.component';
 
 @Component({
   selector: 'app-user-role-tabs',
@@ -18,12 +20,17 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class UserRoleTabsComponent {
   selectedTabIndex = 0;
+  isDrawerOpen = false;
   isSaveVisible = false;
   selectedPermission: any = null;
   selectedRole: any = null;
   selectedModule: any = null;
-
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  drawerTitle: any;
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.router.events.subscribe((event) => {
@@ -65,4 +72,44 @@ export class UserRoleTabsComponent {
   savePermissions() {
     this.isSaveVisible = false;
   }
+  openAddUserDialog(): void {
+    this.dialog
+      .open(AddUserFormComponent, {
+        width: '500px',
+        disableClose: true,
+        data: {
+          /* Data passed to the dialog */
+        },
+        position: {
+          right: '0px',
+          top: '50px',
+        },
+      })
+      .afterClosed()
+      .subscribe((result: { success: boolean }) => {
+        if (result && result.success) {
+          console.log('User added successfully:', result);
+        }
+      });
+  }
+
+  openAddRoleDialog(): void {
+    this.dialog
+      .open(AddRoleFormComponent, {
+        width: '500px',
+        disableClose: true,
+        data: {},
+        position: {
+          right: '0px',
+          top: '50px',
+        },
+      })
+      .afterClosed()
+      .subscribe((result: { success: boolean }) => {
+        if (result && result.success) {
+          console.log('Role added successfully:', result);
+        }
+      });
+  }
+  closeDrawer() {}
 }
